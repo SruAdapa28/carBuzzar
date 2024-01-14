@@ -1,0 +1,634 @@
+<div
+  class="container-fluid mb-5"
+  style="background: linear-gradient(to bottom, #edf7fa 0%, #ffffff 14%)"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <!-- Heading Start -->
+        <div class="row">
+          <p
+            style="
+              color: #031466;
+              font-weight: bold;
+              font-size: 300%;
+              margin-top: 20%;
+            "
+          >
+            {{ brandName }} {{ carname }}
+          </p>
+
+          <p style="font-weight: 600; font-size: 160%">
+            &#8377;{{ (onRoadPrice / 100000).toFixed(2) }} Lakh
+            <small
+              style="
+                color: dodgerblue;
+                font-size: small;
+                margin-left: 1%;
+                cursor: pointer;
+              "
+              (click)="openPriceBreakup()"
+              *ngIf="newcar"
+              >View Price Breakup</small
+            >
+          </p>
+
+          <p style="font-weight: 200; margin-top: -2%" *ngIf="newcar">
+            On-Road Price {{ variantName }} , {{ cityName }}
+          </p>
+          <p style="font-weight: 200; margin-top: -2%" *ngIf="!newcar">
+            {{ variantName }} , {{ cityName }}
+          </p>
+        </div>
+        <!-- Heading End -->
+
+        <!-- Specifications Start -->
+        <div class="row mt-4">
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/carengine.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-2"
+              />
+              <span style="font-size: small" class="text-center"
+                >Engine(cc)</span
+              >
+              <br />
+              <span style="font-weight: 600" class="mx-5 text-center">{{
+                variantDetails.engine > 0 ? variantDetails.engine : "NA"
+              }}</span>
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/car-speed.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-2"
+              /><span style="font-size: small" class="text-center"
+                >Mileage (kmpl)</span
+              >
+              <br />
+              <span style="font-weight: 600" class="mx-5 text-center">{{
+                mileage !== "" ? mileage : "NA"
+              }}</span>
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/transmission.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-1"
+              /><span style="font-size: small">Transmission</span>
+              <br />
+              <span style="font-weight: 600; margin-left: 25%">{{
+                transmissionType
+              }}</span>
+            </p>
+          </div>
+          <div class="col-3" *ngIf="newcar">
+            <p>
+              <img
+                src="../../../assets/images/seat.png"
+                style="width: 20%; height: 80%; margin-top: -12px"
+                class="mx-2"
+              /><span style="font-size: small">Seats</span>
+              <br />
+              <span style="font-weight: 600; margin-left: 35%">{{
+                seatCapacity
+              }}</span>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <small
+            style="
+              color: dodgerblue;
+              font-size: small;
+              margin-left: 1%;
+              cursor: pointer;
+            "
+            (click)="openAllDetails()"
+            *ngIf="newcar"
+            >See All Specs</small
+          >
+        </div>
+        <!-- Specifications End -->
+      </div>
+      <!-- Carousal Start -->
+      <div class="col-6">
+        <div
+          id="carouselExampleDark"
+          class="carousel carousel-dark slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div
+              class="carousel-item"
+              [ngClass]="{ active: i === 0 }"
+              *ngFor="let image of imagesList; let i = index"
+              data-bs-interval="3000"
+            >
+              <img
+                [src]="image"
+                class="mb-5"
+                alt="..."
+                style="
+                  width: 70%;
+                  height: 50%;
+                  margin-left: 15%;
+                  margin-top: 15%;
+                "
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <!-- Carousal End -->
+    </div>
+
+    <!-- car details modal start -->
+    <div class="modal" tabindex="-1" *ngIf="alldetails" style="display: block">
+      <div
+        class="
+          modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl
+        "
+        style="overflow-y: scroll"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">All Specifications</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="closeAllDetails()"
+            ></button>
+          </div>
+          <div class="modal-body" style="overflow-y: auto">
+            <div class="row">
+              <!-- Basic Info Start -->
+              <p>Basic Information</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Seat Capacity
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ carDetails.seatCapacity }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Body Type</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.bodyType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Variant</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantName }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Colors</p>
+                  <p
+                    style="font-weight: 500; font-size: small; margin-left: 10%"
+                  >
+                    {{ variantDetails.color }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Basic Info End -->
+              <!-- Engine & Transmission Start -->
+              <p>Engine & Transmission</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Engine</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{
+                      variantDetails.engine > 0 ? variantDetails.engine : "NA"
+                    }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Max Power</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.maxPower }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Transmission Type
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.transmissionType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Max Torque</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.maxTorque }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Engine & Transmission End -->
+              <!-- Fuel & Performance Start -->
+              <p>Fuel & Performance</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Fuel Type</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.fuelType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Mileage</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.mileage }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Fueltank Capacity
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.fuelCapacity }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Fuel & Performance End -->
+              <!-- Dimension & Capacity Start -->
+              <p>Dimension & Capacity</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Length (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.length }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Height (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.height }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">width (mm)</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.width }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Ground Clearance (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.groundClearance }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Diemnsion & Capacity End -->
+              <!-- Safety Start -->
+              <p>Safety</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Anti-Lock Braking System
+                  </p>
+                  <img
+                    src="../../../assets/images/{{ variantDetails.abs }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Air Bags</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.airbags }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Cental Locking
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      variantDetails.centralLocking
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Break Assist
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      variantDetails.breakAssist
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Safety Rating (NCAP)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ variantDetails.safetyRating }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Safety End -->
+              <!-- Comfort & Convenience Start -->
+              <p>Comfort & Convenience</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Steering
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      variantDetails.powerSteering
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Power Boot</p>
+                  <img
+                    src="../../../assets/images/{{
+                      variantDetails.powerBoot
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Door Locks
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      variantDetails.powerDoorLocks
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Windows
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{
+                      variantDetails.powerWindow !== ""
+                        ? variantDetails.powerWindow
+                        : "NA"
+                    }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Compoft & Convenience End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- car details modal end -->
+
+    <!-- Price Breakup Modal Start -->
+    <div
+      class="modal"
+      tabindex="-1"
+      *ngIf="priceBreakup"
+      style="display: block"
+    >
+      <div class="modal-dialog" style="margin-right: 50%; margin-top: 22%">
+        <div class="modal-content">
+          <div class="modal-header" style="color: #031466">
+            <h5 class="modal-title" style="font-weight: bold">Price Breakup</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="closePriceBreakup()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-between">
+              <p style="font-weight: 600">ExShowroom Price</p>
+              <p style="font-weight: 300">{{ exShowRoomPrice }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p style="font-weight: 600">Registration Fee</p>
+              <p style="font-weight: 300">{{ rtoCharge }}</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p style="font-weight: 600">FastTag Charge</p>
+              <p style="font-weight: 300">{{ fastTagCharge }}</p>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between">
+              <p style="font-weight: 600">OnRoad Price</p>
+              <p style="font-weight: 300">
+                {{ onRoadPrice }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Price Breakup Modal End -->
+  </div>
+</div>
+<!--  -->
+
+<app-newcarbody
+  [variants]="variants"
+  [carName]="carname"
+  [brandName]="brandName"
+  (carVariantDetailsEmitter)="fetchVariantDetails($event)"
+  *ngIf="newcar && carname !== ''"
+></app-newcarbody>
+
+<div *ngIf="!newcar && carname !== ''">
+  <app-oldcarbody
+    [oldCarDetails]="oldCarDetails"
+    [carName]="carname"
+    [variantName]="variantName"
+  ></app-oldcarbody>
+</div>
+
+<div class="container-fluid" style="background-color: #edf7fa" *ngIf="newcar">
+  <div class="container py-5">
+    <p
+      class="pt-5"
+      style="font-size: 160%; font-weight: 500; color: #031466"
+      class="text-center"
+    >
+      Similar Cars
+    </p>
+    <div class="row">
+      <!-- Component start -->
+      <div class="col-3 my-3" *ngFor="let car of similarCars | slice: 0:4">
+        <div
+          class="card"
+          style="border-radius: 10px"
+          (click)="moveToDetails(car.id, car.carName)"
+        >
+          <div>
+            <img
+              class="mb-3"
+              [src]="car.image"
+              style="
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                width: 100%;
+                height: 100%;
+                max-height: 100%;
+                cursor: pointer;
+              "
+            />
+            <p class="px-4" style="font-size: 100%; font-weight: bold">
+              {{ car.brandName }} {{ car.carName }}
+            </p>
+
+            <div class="d-flex mt-3 mb-2 px-3 py-2">
+              <span
+                style="margin-top: -6%; font-weight: 300; font-size: medium"
+                class="flex-grow-1 mx-2"
+                >&#8377;{{ (car.onRoadPrice / 100000).toFixed(2) }} Lakh</span
+              >
+            </div>
+            <div
+              class="d-flex justify-content-around"
+              style="font-size: small; color: #000"
+            >
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ car.engine > 0 ? car.engine : "NA" }}
+                  <br />
+                  <small
+                    class="mx-2 text-center"
+                    style="margin-top: -26%; font-weight: 300"
+                    >Engine(cc)</small
+                  >
+                </p>
+              </div>
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ car.mileage > 0 ? car.mileage : "NA" }}
+                  <br /><small
+                    style="margin-top: -26%; font-weight: 300"
+                    class="text-center"
+                    >Mileage(kmpl)</small
+                  >
+                </p>
+              </div>
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ car.transmission }}
+                  <br /><small
+                    style="margin-top: -26%; font-weight: 300"
+                    class="text-center"
+                    >Transmission</small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Component end -->
+    </div>
+  </div>
+</div>
+<!-- <app-footer></app-footer> -->

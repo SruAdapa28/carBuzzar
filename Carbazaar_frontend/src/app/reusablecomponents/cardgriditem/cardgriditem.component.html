@@ -1,0 +1,69 @@
+<div class="card p-3 mx-2" style="border-radius: 20px; cursor: pointer">
+  <div class="d-flex" *ngIf="closeIncluded == true; else elseBlockClose">
+    <p class="mt-2" style="font-size: large; font-weight: bold; flex-grow: 8">
+      {{ car.brandName }} {{ car.carName }}
+    </p>
+    <div
+      id="cross"
+      style="justify-content: flex-end; flex-grow: 1"
+      (click)="onCloseVariant()"
+    >
+      &times;
+    </div>
+  </div>
+
+  <ng-template #elseBlockClose>
+    <p class="mt-2" style="font-size: large; font-weight: bold">
+      {{ car.brandName }} {{ car.carName }}
+    </p>
+  </ng-template>
+
+  <p style="margin-top: -6%; font-weight: 300" class="mx-1">
+    &#8377; {{ (car.onRoadPrice / 100000).toFixed(2) }} Lakh
+  </p>
+  <img
+    [src]="car.image"
+    (click)="moveToDetails(car.id)"
+  />
+
+  <!-- srujana changes -->
+  <!--<img *ngIf="carType=='New'" src="../../../assets/images/{{ car.image }}.jpeg" (click)="moveToDetails(car.id)"/>
+     <ng-template #elseBlock>
+    <img  src="../../../assets/images/{{ car.image }}.jpg" height="164px" (click)="moveToDetails(car.id)"/>
+  </ng-template> -->
+  <div
+    class="d-flex justify-content-around mt-3 mx-2"
+    style="font-size: small; color: #000"
+  >
+    <div>
+      <p style="font-weight: 500" class="text-center mx-1">
+        {{ car.engine > 0 ? car.engine : "NA" }}
+        <br />
+        <small
+          class="mx-2 text-center"
+          style="margin-top: -26%; font-weight: 300"
+          >Engine(cc)</small
+        >
+      </p>
+    </div>
+    <div>
+      <p style="font-weight: 500" class="text-center mx-1">
+        {{ car.mileage > 0 ? car.mileage : "NA" }} <br /><small
+          style="margin-top: -26%; font-weight: 300"
+          class="text-center"
+          >Mileage(kmpl)</small
+        >
+      </p>
+    </div>
+    <div>
+      <p style="font-weight: 500" class="text-center mx-1">
+        {{ car.transmission }}
+        <br /><small
+          style="margin-top: -26%; font-weight: 300"
+          class="text-center"
+          >Transmission</small
+        >
+      </p>
+    </div>
+  </div>
+</div>

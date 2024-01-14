@@ -1,0 +1,516 @@
+<div class="container-fluid">
+  <div class="container">
+    <div
+      class="row card d-flex"
+      style="
+        width: 55%;
+        height: 120px;
+        margin-top: -12%;
+        box-shadow: 10px 10px 5px whitesmoke;
+        z-index: 1;
+        border-radius: 10px;
+      "
+    >
+      <div class="col-10 p-2">
+        <div class="d-flex p-2">
+          <p
+            style="
+              color: #031466;
+              font-weight: bold;
+              font-size: large;
+              margin-left: 12px;
+              width: 40%;
+            "
+          >
+            Add Filters
+          </p>
+          <div class="d-grid gap-3 d-md-block" style="margin-left: 72px">
+            <button
+              class="btn btn-sm btn-outline-primary mx-1 filterbtn"
+              type="button"
+              (click)="filter1Selected()"
+              [style.background-color]="btn1Clicked ? '#e7f9ff' : 'white'"
+              (click)="setOldCarIndecator()"
+            >
+              Used cars
+              <img
+                src="../../../assets/images/carbutton.png"
+                style="width: 20%; margin-left: 2px; margin-bottom: 3px"
+              />
+            </button>
+            <button
+              class="btn btn-sm btn-outline-primary mx-1 filterbtn"
+              type="button"
+              (click)="filter2Selected()"
+              [style.background-color]="btn2Clicked ? '#e7f9ff' : 'white'"
+              (click)="setNewCarIndecator()"
+            >
+              New cars
+              <img
+                src="../../../assets/images/carbutton.png"
+                style="width: 20%; margin-left: 2px; margin-bottom: 3px"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="d-flex justify-content-around p-2"
+          style="margin-top: -1%; font-size: small"
+        >
+          <div>
+            <select
+              (change)="onBrandeChange($event)"
+              (change)="setBrandId($event)"
+              class="form-select mb-3 mx-2"
+              style="
+                width: 100%;
+                color: #031466;
+                border: none;
+                background-color: #edf7fa;
+                font-size: medium;
+              "
+              aria-label="Default select example"
+            >
+              <option selected value="0">Brand</option>
+              <option
+                value="{{ brand.id }}"
+                *ngFor="let brand of brands; let i = index"
+              >
+                {{ brand.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <select
+              (change)="setModelName($event)"
+              class="form-select"
+              style="
+                width: 100%;
+                color: #031466;
+                background-color: #edf7fa;
+                border: none;
+                font-size: medium;
+                margin-left: 5%;
+              "
+              aria-label="Default select example"
+            >
+              <option selected>Model</option>
+              <option
+                value="{{ model.name }}"
+                *ngFor="let model of models; let i = index"
+              >
+                {{ model.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <select
+              (change)="setPrice($event)"
+              class="form-select"
+              style="
+                width: 100%;
+                color: #031466;
+                background-color: #edf7fa;
+                border: none;
+                font-size: medium;
+              "
+              aria-label="Default select example"
+            >
+              <option selected>Price</option>
+              <option value="5">&lt; 5 Lakh</option>
+              <option value="10">&lt; 10 Lakh</option>
+              <option value="15">&lt; 15 Lakh</option>
+              <option value="20">&gt; 15 Lakh</option>
+            </select>
+          </div>
+          <div class="mb-5">
+            <p
+              style="
+                color: #031466;
+                font-weight: 400;
+                cursor: pointer;
+                font-size: medium;
+              "
+              (click)="openMoreFilter()"
+              (click)="toggleShow()"
+            >
+              More Filters
+              <strong style="font-size: x-large; margin-top: 12%">+</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-2 text-center"
+        style="
+          background-color: #031466;
+          border-top-right-radius: 10%;
+          border-bottom-right-radius: 10%;
+          height: 120px;
+          cursor: pointer;
+        "
+        (click)="onSearch()"
+        [routerLink]="['/carSuggestions']"
+        routerLinkActive="router-link-active"
+      >
+        <p
+          style="font-size: large; color: rgb(216, 187, 187); margin-top: 50px"
+        >
+          Search
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="row card py-3 px-3"
+      [id]="morefilterid"
+      *ngIf="isOldCarShown || isNewCarShown"
+    >
+      <div class="d-flex">
+        <p
+          class="flex-grow-1"
+          style="
+            color: #031466;
+            font-weight: bold;
+            font-size: large;
+            width: 40%;
+          "
+        >
+          More Filters
+        </p>
+        <img
+          src="../../../assets/images/close.png"
+          style="width: 2%; height: 10%; margin-top: 1%; cursor: pointer"
+          (click)="closeMoreFilter()"
+          (click)="toggleShow()"
+        />
+      </div>
+
+      <!--Old Car More Filters Start    -->
+
+      <div class="for-professional" *ngIf="isOldCarShown">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <p class="mt-4" style="color: #031466">Seats</p>
+              <div class="d-flex" style="font-size: small">
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="5"
+                    id="flexCheckDefault"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    5 Seater
+                  </label>
+                </div>
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="7"
+                    id="flexCheckChecked"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    7 Seater
+                  </label>
+                </div>
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="9"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    9 Seater
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <p class="mt-4" style="color: #031466">Km Driven</p>
+            <div class="d-flex" style="font-size: small">
+              <input
+                type="range"
+                id="volume"
+                name="volume"
+                min="0"
+                max="500000"
+                value="10000"
+                (change)="setKmDriven($event)"
+              />
+              <label for="volume"></label>
+            </div>
+          </div>
+
+          <div class="col-md-3 mt-5">
+            <select
+              (change)="setOwnerType($event)"
+              class="form-select"
+              style="
+                width: 80%;
+                color: #031466;
+                background-color: #edf7fa;
+                border: none;
+                font-size: medium;
+                margin-left: 20px;
+              "
+              aria-label="Default select example"
+            >
+              <option selected>Owner Type</option>
+              <option value="1">1st Owner</option>
+              <option value="2">2nd Owner</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mt-5">
+            <p class="mt-4" style="color: #031466">Fuel Type</p>
+            <div class="d-flex" style="font-size: small">
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="PETROL"
+                  id="flexCheckDefault"
+                  (change)="setFuelType($event)"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Petrol
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="DIESEL"
+                  id="flexCheckChecked"
+                  (change)="setFuelType($event)"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                  Diesel
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 mt-5">
+            <p class="mt-4" style="color: #031466">Transmission</p>
+            <div class="d-flex" style="font-size: small">
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="MANUAL"
+                  id="flexCheckDefault"
+                  (change)="setTransmissionType($event)"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Manual
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="AUTOMATIC"
+                  id="flexCheckChecked"
+                  (change)="setTransmissionType($event)"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                  Automatic
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Old Car More Filters End    -->
+
+      <!--New Car More Filters start   -->
+
+      <div class="for-professional" *ngIf="isNewCarShown">
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <p class="mt-4" style="color: #031466">Seats</p>
+              <div class="d-flex" style="font-size: small">
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="5"
+                    id="flexCheckDefault"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    5 Seater
+                  </label>
+                </div>
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="7"
+                    id="flexCheckChecked"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    7 Seater
+                  </label>
+                </div>
+                <div class="form-check mx-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="9"
+                    (change)="setSeatCapacity($event)"
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    9 Seater
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <p class="mt-4" style="color: #031466">Safety Ratings</p>
+            <div class="d-flex" style="font-size: small">
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value="1"
+                  (change)="setSafetyRatings($event)"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  1 Star
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value="2"
+                  (change)="setSafetyRatings($event)"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  2 Star
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value="3"
+                  (change)="setSafetyRatings($event)"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  3 Star
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value="4"
+                  (change)="setSafetyRatings($event)"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  4 Star
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value="5"
+                  (change)="setSafetyRatings($event)"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  5 Star
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-5">
+            <p class="mt-4" style="color: #031466">Fuel Type</p>
+            <div class="d-flex" style="font-size: small">
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="PETROL"
+                  id="flexCheckDefault"
+                  (change)="setFuelType($event)"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Petrol
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="DIESEL"
+                  id="flexCheckChecked"
+                  (change)="setFuelType($event)"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                  Diesel
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-5">
+            <p class="mt-4" style="color: #031466">Transmission</p>
+            <div class="d-flex" style="font-size: small">
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="MANUAL"
+                  id="flexCheckDefault"
+                  (change)="setTransmissionType($event)"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Manual
+                </label>
+              </div>
+              <div class="form-check mx-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="AUTOMATIC"
+                  id="flexCheckChecked"
+                  (change)="setTransmissionType($event)"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                  Automatic
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--New Car More Filters End    -->
+      </div>
+    </div>
+  </div>
+</div>

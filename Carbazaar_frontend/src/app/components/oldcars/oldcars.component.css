@@ -1,0 +1,8 @@
+.b{
+  color: white;
+  background-color: #031466;
+}
+
+#compareCarsModal.show {
+  display: block;
+}

@@ -1,0 +1,95 @@
+<div
+  class="container-fluid"
+  style="
+    margin-top: 7%;
+    background: linear-gradient(to top, #edf7fa 0%, #ffffff 34%);
+  "
+>
+  <div class="container">
+    <div class="card mt-5 p-3">
+      <div class="d-flex">
+        <p
+          class="mt-2 mx-4"
+          style="font-weight: 600; font-size: 160%; color: #031466"
+        >
+          {{ brandName }} {{ carName }} price list (Variants)
+        </p>
+        <div class="container-fluid">
+          <button class="btn btn-info b"
+          style="margin-bottom: 1%; margin-top: 4%; margin-left: 77%;" (click)="compareSelectedCars()" data-toggle="modal" data-target="#compareCarsModal"
+          >Compare Selected Cars</button>
+        </div>
+
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-3">
+          <p class="text-center" style="font-weight: 700; color: #031466">
+            Variant
+          </p>
+        </div>
+        <div class="col-3">
+          <p class="text-center" style="font-weight: 700; color: #031466">
+            On-Road Price
+          </p>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3">
+          <p class="text-center" style="font-weight: 700; color: #031466">
+            Compare
+          </p>
+        </div>
+      </div>
+      <div
+        *ngFor="
+          let variant of variants
+            | paginate: { itemsPerPage: 3, currentPage: p }
+        "
+      >
+        <!-- Single Variant Start -->
+        <app-singlecarvariantdetails
+          [variant]="variant"
+          (variantDetails)="fetchVariantDetails($event)"
+        ></app-singlecarvariantdetails>
+        <hr />
+        <!-- Single Variant End -->
+      </div>
+      <div class="row">
+        <!-- <b
+          style="
+            color: dodgerblue;
+            font-size: small;
+            margin-left: 7%;
+            cursor: pointer;
+          "
+        >
+          View All Variants
+        </b> -->
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Compare cars Modal -->
+<div class="modal fade" [ngClass] ="{'show' : compareCarsModal}" id="compareCarsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) ="OnClickCloseCompareCarsModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div>
+        <div class="modal-body">
+          Please select a car to compare!!
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) ="OnClickCloseCompareCarsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

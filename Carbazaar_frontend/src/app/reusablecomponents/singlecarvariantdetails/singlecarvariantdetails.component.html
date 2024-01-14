@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-3">
+    <p
+      class="text-center"
+      style="cursor: pointer"
+      (click)="showVariant(variant.carName, variant.variantName)"
+    >
+      {{ variant.carName }} {{ variant.variantName }}<br />
+      <small>
+        1197 cc, {{ variant.fuelType }}, {{ variant.transmissionType }},
+        {{ variant.mileage }} kmpl
+      </small>
+    </p>
+  </div>
+  <div class="col-3">
+    <p class="text-center">
+      &#8377; {{ (variant.onRoadPrice / 100000).toFixed(2) }} Lakh<br />
+      <small
+        class="text-center"
+        style="
+          color: dodgerblue;
+          font-size: small;
+          margin-left: 1%;
+          cursor: pointer;
+        "
+        (click)="openPriceBreakup()"
+      >
+        View Price Breakup
+      </small>
+    </p>
+  </div>
+  <div class="col-3">
+    <button
+      class="btn btn-primary btn-md"
+      style="width: 75%; margin-left: 15%; border-radius: 5px"
+      (click)="compareDealers(variant.carName ,'Bhubaneswar',variant.variantName)"
+    >
+      Compare Dealer Offers
+    </button>
+  </div>
+  <div class="col-3 d-flex">
+    <small class="mt-2" style="margin-left: 30%; font-size: smaller"
+      >Add To Compare</small
+    >
+    <div class="form-check mx-2 mt-1">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="{{variant.id}}" [checked]="onCheckIfSelected(variant.id)"
+        id="flexCheckDefault" [disabled]="compareLength >= allowedCarsToCompare && !onCheckIfSelected(variant.id)"
+        (change)="selectCarToCompare($event)"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Price Breakup Modal Start -->
+<div class="modal" tabindex="-1" *ngIf="priceBreakup" style="display: block">
+  <div class="modal-dialog" style="margin-right: 50%; margin-top: 22%">
+    <div class="modal-content">
+      <div class="modal-header" style="color: #031466">
+        <h5 class="modal-title" style="font-weight: bold">Price Breakup</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closePriceBreakup()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">ExShowroom Price</p>
+          <p style="font-weight: 300">{{ variant.exShowroomPrice }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">Registration Fee</p>
+          <p style="font-weight: 300">{{ variant.rtoCharge }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">FastTag Charge</p>
+          <p style="font-weight: 300">{{ variant.fastTag }}</p>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">OnRoad Price</p>
+          <p style="font-weight: 300">
+            {{ variant.onRoadPrice }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Price Breakup Modal End -->

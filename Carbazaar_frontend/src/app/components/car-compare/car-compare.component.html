@@ -1,0 +1,153 @@
+<div
+  class="container-fluid overflow-x: hidden"
+  style="background: linear-gradient(to bottom, #edf7fa 0%, #ffffff 34%)"
+>
+  <!-- <div id="subHeading">
+      <h3>{{carNamesTitle}}
+    </h3>
+  </div> -->
+
+  <div style="display: flex">
+    <div
+      style="flex-grow: 1"
+      [ngClass]="{
+        disableDiv:
+          carType == 'Used' || allowedCarsToCompare <= selectedVariants.length
+      }"
+    >
+      <div class="col-4" style="width: 73%; height: 0%; margin-top: 6%">
+        <div class="card p-3 mx-2" style="border-radius: 20px; cursor: pointer">
+          <img
+            class="mt-4 mb-1"
+            src="../../../assets/images/add1.png"
+            style="width: 30%; margin-left: 35%; height: 30%"
+          />
+          <p class="text-center mt-2" style="color: #031466; font-weight: 500">
+            Add Car
+          </p>
+
+          <select
+            (change)="setBrandId($event)"
+            class="form-select mb-3 mx-2"
+            style="
+              width: 90%;
+              color: #031466;
+              border: none;
+              background-color: #edf7fa;
+              font-size: medium;
+            "
+            aria-label="Default select example"
+          >
+            <option selected value="0">Brand</option>
+            <option
+              value="{{ brand.id }}"
+              *ngFor="let brand of brands; let i = index"
+            >
+              {{ brand.name }}
+            </option>
+          </select>
+          <select
+            class="form-select"
+            (change)="setModelId($event)"
+            style="
+              width: 90%;
+              color: #031466;
+              background-color: #edf7fa;
+              border: none;
+              font-size: medium;
+              margin-left: 3%;
+              margin-bottom: 7%;
+            "
+            aria-label="Default select example"
+          >
+            <option selected>Model</option>
+            <option
+              value="{{ model.id }}"
+              *ngFor="let model of models; let i = index"
+            >
+              {{ model.name }}
+            </option>
+          </select>
+
+          <select
+            class="form-select"
+            (change)="setVariantName($event)"
+            style="
+              width: 90%;
+              color: #031466;
+              background-color: #edf7fa;
+              border: none;
+              font-size: medium;
+              margin-left: 3%;
+              margin-bottom: 7%;
+            "
+            aria-label="Default select example"
+          >
+            <option selected>Variant</option>
+            <option
+              value="{{ variant.variantName }}"
+              *ngFor="let variant of variants; let i = index"
+            >
+              {{ variant.variantName }}
+            </option>
+          </select>
+          <button
+            class="btn btn-primary"
+            style="width: 75%; margin-left: 15%; border-radius: 5px"
+            (click)="addToCompare()"
+          >
+            Add To Compare
+          </button>
+        </div>
+      </div>
+      <div style="width: 100%; margin-top: 106%">
+        <app-car-features [carType]="carType"></app-car-features>
+      </div>
+    </div>
+
+    <div class="container" id="scroller">
+      <div class="d-flex" style="padding: 2%">
+        <div
+          class="col-4"
+          *ngFor="let variant of selectedVariants; let i = index"
+        >
+          <!-- <app-cardgriditem [carVariant] = "variant"></app-cardgriditem> -->
+          <app-cardgriditem
+            [carType]="carType"
+            [carVariant]="variant"
+            [closeIncluded]="true"
+          ></app-cardgriditem>
+          <div style="margin-top: 18%; margin-right: -20%; margin-left: 10%">
+            <app-carfeaturelist
+              [carType]="carType"
+              [variant]="variant"
+            ></app-carfeaturelist>
+            <button
+              *ngIf="carType == 'New'"
+              class="btn btn-primary"
+              routerLink="/dealerCompare"
+              style="width: 75%; margin-left: 0%; border-radius: 5px"
+              (click)="
+                compareDealers(
+                  variant.carName,
+                  'Bhubaneswar',
+                  variant.variantName
+                )
+              "
+            >
+              Compare Dealer Prices
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="margin-top: -15%">
+  <app-notification
+    [notificationHeader]="'Recommended Cars'"
+    [cars]="recommendedCars"
+    style="margin-top: -500vh"
+  >
+  </app-notification>
+</div>

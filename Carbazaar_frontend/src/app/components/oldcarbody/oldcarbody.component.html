@@ -1,0 +1,719 @@
+<div
+  style="
+    margin-top: 7%;
+    background: linear-gradient(to top, #edf7fa 0%, #ffffff 34%);
+  "
+>
+  <div class="container py-5">
+    <!-- car details modal start -->
+    <div class="modal" tabindex="-1" *ngIf="showModal" style="display: block">
+      <div
+        class="
+          modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl
+        "
+        style="overflow-y: scroll"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">All Specifications</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style="background-color: transparent"
+              (click)="closeModal()"
+            ></button>
+          </div>
+          <div class="modal-body" style="overflow-y: auto">
+            <div class="row">
+              <!-- Car Overview Start -->
+              <p>Car Overview</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">History</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ oldCarDetails.history }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Kilometers Driven
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ oldCarDetails.kilometerDriven }} km
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Insurance</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ oldCarDetails.insuranceDescription }}, Valid Till
+                    {{ oldCarDetails.insuranceLastDate }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Owner</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ oldCarDetails.ownerType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Registration
+                  </p>
+                  <p
+                    style="font-weight: 500; font-size: small; margin-left: 10%"
+                  >
+                    {{ oldCarDetails.registration }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Year of Purchase
+                  </p>
+                  <p
+                    style="font-weight: 500; font-size: small; margin-left: 10%"
+                  >
+                    {{ oldCarDetails.yearOfPurchase }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Car Features & Specifications End -->
+
+              <!-- Engine & Transmission Start -->
+              <p>Engine & Transmission</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Engine</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.engine }} cc
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Max Power</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.maxPower }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Transmission Type
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.transmissionType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Max Torque</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.maxTorque }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Engine & Transmission End -->
+              <!-- Fuel & Performance Start -->
+              <p>Fuel & Performance</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Fuel Type</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.fuelType }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Mileage</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.mileage }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Fueltank Capacity
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.fuelCapacity }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Fuel & Performance End -->
+              <!-- Dimension & Capacity Start -->
+              <p>Dimension & Capacity</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Length (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.length }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Height (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.height }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">width (mm)</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.width }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Ground Clearance (mm)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.groundClearance }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Diemnsion & Capacity End -->
+              <!-- Safety Start -->
+              <p>Safety</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Anti-Lock Braking System
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.abs
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Air Bags</p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.airbags }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Cental Locking
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.centralLocking
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Break Assist
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.breakAssist
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Safety Rating (NCAP)
+                  </p>
+                  <p style="font-weight: 500; font-size: small" class="px-3">
+                    {{ cardetailsResponse.data.safetyRating }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Safety End -->
+              <!-- Comfort & Convenience Start -->
+              <p>Comfort & Convenience</p>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Steering
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.powerSteering
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Power Boot</p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.powerBoot
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">CD player</p>
+                  <img
+                    src="../../../assets/images/{{
+                      oldCarDetails.cdPlayer
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Aux Compatibility
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      oldCarDetails.auxCompatibility
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">Speakers</p>
+                  <p class="px-3">{{ oldCarDetails.speakers }}</p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Front Tyre Details
+                  </p>
+                  <p class="px-3">{{ oldCarDetails.frontTyreDesc }}</p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <div class="col-6">
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Door Locks
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.powerDoorLocks
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Power Windows
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      cardetailsResponse.data.powerWindow === ''
+                        ? false
+                        : cardetailsResponse.data.powerWindow
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    USB Compatibility
+                  </p>
+                  <img
+                    src="../../../assets/images/{{
+                      oldCarDetails.usbCompatibility == null
+                        ? false
+                        : oldCarDetails.usbCompatibility
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">MP3 Player</p>
+                  <img
+                    src="../../../assets/images/{{
+                      oldCarDetails.mp3Player
+                    }}.png"
+                    style="width: 25px; height: 25px"
+                    class="mx-2"
+                  />
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Seat Upholsery Details
+                  </p>
+                  <p class="px-3">{{ oldCarDetails.seatUpholseryDetails }}</p>
+                </div>
+                <hr style="margin-top: -1%" />
+                <div class="d-flex">
+                  <p class="flex-grow-1" style="font-weight: 200">
+                    Rear Tyre Details
+                  </p>
+                  <p class="px-3">
+                    {{
+                      oldCarDetails.rearTyreDesc == null
+                        ? "NA"
+                        : oldCarDetails.rearTyreDesc
+                    }}
+                  </p>
+                </div>
+                <hr style="margin-top: -1%" />
+              </div>
+              <!-- Compoft & Convenience End -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- car details modal end -->
+    <p
+      style="font-weight: 700; font-size: 150%; color: #031466"
+      class="text-center"
+    >
+      Car Overview
+    </p>
+    <div class="row mt-5">
+      <div class="col-8">
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic example"
+          style="margin-left: 19%"
+        >
+          <button
+            type="button"
+            class="btn btn-primary px-5"
+            style="background-color: white; color: #031466"
+            (click)="showOverview()"
+          >
+            Overview
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary px-5"
+            style="background-color: white; color: #031466"
+            (click)="showFeatures()"
+          >
+            Features
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary px-5"
+            style="background-color: white; color: #031466"
+            (click)="showSpecifications()"
+          >
+            Specifications
+          </button>
+        </div>
+        <div class="card mx-5 mt-1 p-3">
+          <!-- Overview Start -->
+          <div class="row" *ngIf="overview">
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">History</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.history }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Kilometers Driven
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.kilometerDriven }} km
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Transmission</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.transmission }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Insurance</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.insuranceLastDate }} <br />
+                  {{ oldCarDetails.insuranceDescription }}
+                </p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Owner</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.ownerType }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Fuel Type</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.fuelType }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Registration</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.registration }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Year of Purchase
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ oldCarDetails.yearOfPurchase }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Overview End -->
+          <!-- Features Start -->
+          <div class="row" *ngIf="feature">
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Central Locking
+                </p>
+                <img
+                  src="../../../assets/images/{{ features.centralLocking }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.centralLocking }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Break Assist</p>
+                <img
+                  src="../../../assets/images/{{ features.breakAssist }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.breakAssist }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Power Boot</p>
+                <img
+                  src="../../../assets/images/{{ features.powerBoot }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.powerBoot }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Power DoorLocks
+                </p>
+                <img
+                  src="../../../assets/images/{{ features.powerDoorLocks }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.powerDoorLocks }}
+                </p> -->
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Power Steering
+                </p>
+                <img
+                  src="../../../assets/images/{{ features.powerSteering }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.powerSteering }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Power Window</p>
+                <img
+                  src="../../../assets/images/false.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                  *ngIf="features.powerWindow === ''"
+                />
+                <img
+                  src="../../../assets/images/true.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                  *ngIf="features.powerWindow !== ''"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.powerWindow }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">CD player</p>
+                <img
+                  src="../../../assets/images/{{ features.cdPlayer }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.cdPlayer }}
+                </p> -->
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">MP3 Playback</p>
+                <img
+                  src="../../../assets/images/{{ features.mp3Player }}.png"
+                  style="width: 25px; height: 25px"
+                  class="mx-2"
+                />
+                <!-- <p style="font-weight: 500; font-size: small">
+                  {{ features.mp3Player }}
+                </p> -->
+              </div>
+            </div>
+          </div>
+          <!-- Features End -->
+          <!-- Specification Start -->
+          <div class="row" *ngIf="specification">
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Fuel type</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.fuelType }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Transmission type
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.transmissionType }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Max power (bhp)
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.maxPower }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Mileage (kmpl)
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.mileage }}
+                </p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Seating capacity
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.seatCapacity }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">
+                  Fuel tank capacity (litres)
+                </p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.fuelCapacity }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">Max Torque</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.maxTorque }}
+                </p>
+              </div>
+              <hr style="margin-top: -1%" />
+              <div class="d-flex">
+                <p class="flex-grow-1" style="font-weight: 200">SafetyRating</p>
+                <p style="font-weight: 500; font-size: small">
+                  {{ specifications.safetyRating }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Specification End -->
+        </div>
+      </div>
+      <div class="col-4 card">
+        <img
+          src="../../../assets/images/car.svg"
+          style="width: 60%; margin-top: 15%; margin-left: 20%"
+        />
+        <button
+          class="btn btn-primary mt-4 mx-5"
+          style="width: 75%; margin-left: 15%; border-radius: 5px"
+          (click)="openModal()"
+        >
+          View All Specs & Features
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

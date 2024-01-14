@@ -1,0 +1,155 @@
+<div
+  class="container-fluid"
+  style="background: linear-gradient(to bottom, #edf7fa 0%, #ffffff 34%)"
+>
+  <div class="container" style="min-height: 100vh">
+    <p class="pt-5" style="font-size: 160%; font-weight: 500; color: #031466">
+      Old Cars In {{ cityName }}
+    </p>
+    <div class="container-fluid">
+      <button class="btn btn-info b"
+      style="margin-bottom: 1%; margin-top: 2%; margin-left: 83%;" (click) = compareSelectedCars() data-toggle="modal" data-target="#compareCarsModal"
+      >Compare Selected Cars</button>
+    </div>
+    <select (change)="sortByPrice($event)"
+        class="form-select"
+        style="
+          width: 15%;
+          color: #031466;
+          border: none;
+          background-color: #edf7fa;
+          font-size: medium;
+        "
+        aria-label="Default select example"
+      >
+
+      <option selected >Sort By Price</option>
+      <option
+       value ="lth" >Low to High</option>
+      <option
+       value="htl" >High to Low</option>
+    </select>
+    <div class="row">
+      <!-- component start -->
+      <div class="col-3 my-3" *ngFor="let oldcar of oldCars">
+        <div class="card" style="border-radius: 10px">
+          <!-- view more -->
+          <div style="cursor: pointer" >
+            <img
+              class="mb-3"
+              [src]="oldcar.imageUrlList[0]"
+              style="
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                width: 100%;
+                height: 50%;
+              "
+              (click)="moveToDetails(oldcar.id)"
+            />
+            <p class="px-4" style="font-size: 100%; font-weight: bold">
+              {{ oldcar.yearOfPurchase }} {{ oldcar.carName }}
+              {{
+                oldcar.variantName.length > 15
+                  ? oldcar.variantName.substring(0, 15) + "..."
+                  : oldcar.variantName
+              }}
+            </p>
+            <div class="d-flex mt-3 mb-2 px-3 py-2">
+              <span
+                style="margin-top: -6%; font-weight: 300; font-size: medium"
+                class="flex-grow-1 mx-2"
+                >&#8377; {{ oldcar.dealerPrice / 100000 }} Lakh</span
+              >
+              <span
+                style="margin-top: -5%; font-weight: 300; font-size: small"
+                class="mx-1"
+                >Add To Compare</span
+              >
+              <div class="form-check" style="font-size: small; margin-top: -5%">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="{{oldcar.id}}" [checked]="onCheckIfSelected(oldcar.id)"
+                  id="flexCheckDefault" [disabled]="compareLengthOld >= allowedCarsToCompare && !onCheckIfSelected(oldcar.id)"
+                  (change)="selectCarToCompare($event)"
+                />
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-around"
+              style="font-size: small; color: #000"
+            >
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ oldcar.kilometersDriven }}
+                  <br />
+                  <small
+                    class="mx-2 text-center"
+                    style="margin-top: -26%; font-weight: 300"
+                    >KM Driven</small
+                  >
+                </p>
+              </div>
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ oldcar.ownerStatus }} <br /><small
+                    style="margin-top: -26%; font-weight: 300"
+                    class="text-center"
+                    >Owner</small
+                  >
+                </p>
+              </div>
+              <div>
+                <p style="font-weight: 500" class="text-center">
+                  {{ oldcar.transmissionType }}
+                  <br /><small
+                    style="margin-top: -26%; font-weight: 300"
+                    class="text-center"
+                    >Transmission</small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              background-color: #031466;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            "
+          >
+            <p
+              class="text-center mt-3"
+              style="cursor: pointer; font-weight: 500; color: white"
+              (click)="onSearchKnowYourDealer(oldcar.dealerId)"
+            >
+              Know Dealer Info
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- component end -->
+    </div>
+  </div>
+</div>
+
+
+<!-- Compare cars Modal -->
+<div class="modal fade" [ngClass] ="{'show' : compareCarsModal}" id="compareCarsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) ="OnClickCloseCompareCarsModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div>
+        <div class="modal-body">
+          Please select a car to compare!!
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) ="OnClickCloseCompareCarsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

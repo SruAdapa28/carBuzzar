@@ -1,0 +1,23 @@
+.b{
+  color: white;
+  background-color: #031466;
+}
+.values{
+  margin-top: 30%;
+  font-size: small;
+  color: #031466;
+  margin-left: 20%;
+}
+.desc{
+  font-size: small;
+  color: #031466;
+  margin-left: 20%;
+}
+.ft{
+  font-family: "Lucida Console", "Courier New", monospace;
+  margin-left: 20%;
+}
+
+#compareCarsModal.show {
+  display: block;
+}

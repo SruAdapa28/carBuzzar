@@ -1,0 +1,11 @@
+steps:
+    # build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'asia.gcr.io/$PROJECT_ID/$TAG_NAME', '.' ] #here $TAG_NAME is the application name , please replace the it with your application name where ever you find the $TAG_NAME in this file
+    # push the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'asia.gcr.io/$PROJECT_ID/$TAG_NAME']
+    # deploy to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ['run', 'deploy', '$TAG_NAME', '--image', 'asia.gcr.io/$PROJECT_ID/$TAG_NAME', '--memory', '1000Mi', '--region', 'us-west2', '--platform', 'managed', '--allow-unauthenticated']
+logsBucket: 'gs://us-gcp-ame-con-116-npd-1_cloudbuild/$TAG_NAME' #To store the logs of your application in this bucket

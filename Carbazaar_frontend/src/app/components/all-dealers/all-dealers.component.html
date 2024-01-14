@@ -1,0 +1,197 @@
+<div class="container-fluid" style="min-height: 100vh">
+  <div class="container mt-5 d-flex">
+    <div style="margin-left: 1%">
+      <select
+        (change)="filterCarDealer($event)"
+        class="form-select mb-3 mx-2"
+        style="
+          width: 100%;
+          color: #031466;
+          border: none;
+          background-color: #edf7fa;
+          font-size: medium;
+        "
+        aria-label="Default select example"
+      >
+        <option selected value="ALL">All Dealers</option>
+        <option value="NEW">New Cars Dealers</option>
+        <option value="OLD">Used Cars Dealers</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="container mb-5">
+      <div *ngIf="delaerShowWithoutFilter">
+        <div class="row d-flex">
+          <div class="col-md-4" *ngFor="let dealer of dealerList">
+            <div
+              class="row card d-flex py-3"
+              style="
+                box-shadow: 10px 10px 5px whitesmoke;
+                z-index: 1;
+                border-radius: 10px;
+                margin-top: 10%;
+                margin-left: 4%;
+                margin-right: 4%;
+              "
+            >
+              <p class="mx-4" style="font-weight: 700; color: #031466">
+                {{ dealer.name }}
+              </p>
+              <p
+                cclass="mx-4"
+                style="
+                  font-weight: 400;
+                  color: #031466;
+
+                  margin-left: 6%;
+                  font-size: 90%;
+                "
+              >
+                {{ dealerDescc(dealer.carType, dealer.brand.name) }}
+              </p>
+              <div class="row mx-2">
+                <div class="col-2">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/placeholder.png"
+                    style="width: 70%; height: 50%"
+                  />
+                </div>
+                <div class="col-10" style="font-weight: 400; font-size: 90%">
+                  {{ dealer.address }}
+                </div>
+              </div>
+              <div class="row mx-2">
+                <div class="col-2" style="margin-top: 5%">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/call.png"
+                    style="width: 70%; height: 100%"
+                  />
+                </div>
+                <div class="col-10" style="margin-top: 5%; font-size: 90%">
+                  +91{{ dealer.phone }}
+                </div>
+              </div>
+              <div class="row mx-2">
+                <div class="col-2" style="margin-top: 5%">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/mail.png"
+                    style="width: 80%; height: 100%"
+                  />
+                </div>
+                <div class="col-10" style="margin-top: 5%; font-size: 90%">
+                  {{ dealer.email }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6" style="margin-top: 5%"></div>
+                <div class="col-6" style="margin-top: 5%">
+                  <small
+                    style="
+                      color: dodgerblue;
+                      font-size: small;
+                      font-weight: 400;
+                      margin-left: 52%;
+                      cursor: pointer;
+                    "
+                    (click)="knowMore(dealer.id)"
+                    >Know More</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="delaerShowWithFilter">
+        <div class="row d-flex">
+          <div class="col-md-4" *ngFor="let dealer of filteredDealers">
+            <div
+              class="row card d-flex py-3"
+              style="
+                box-shadow: 10px 10px 5px whitesmoke;
+                z-index: 1;
+                border-radius: 10px;
+                margin-top: 10%;
+                margin-left: 4%;
+                margin-right: 4%;
+              "
+            >
+              <p class="mx-4" style="font-weight: 700; color: #031466">
+                {{ dealer.name }}
+              </p>
+              <p
+                cclass="mx-4"
+                style="
+                  font-weight: 400;
+                  color: #031466;
+                  font-size: 15px;
+                  margin-left: 6%;
+                "
+              >
+                {{ dealerDescc(dealer.carType, dealer.brand.name) }}
+              </p>
+              <div class="row mx-2">
+                <div class="col-2">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/placeholder.png"
+                    style="width: 70%; height: 50%"
+                  />
+                </div>
+                <div class="col-10">
+                  {{ dealer.address }} State: {{ dealer.state }}
+                </div>
+              </div>
+              <div class="row mx-2">
+                <div class="col-2" style="margin-top: 5%">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/call.png"
+                    style="width: 70%; height: 100%"
+                  />
+                </div>
+                <div class="col-10" style="margin-top: 5%">
+                  +91{{ dealer.phone }}
+                </div>
+              </div>
+              <div class="row mx-2">
+                <div class="col-2" style="margin-top: 5%">
+                  <img
+                    class="text-center"
+                    src="../../../assets/images/mail.png"
+                    style="width: 80%; height: 100%"
+                  />
+                </div>
+                <div class="col-10" style="margin-top: 5%">
+                  {{ dealer.email }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6" style="margin-top: 5%"></div>
+                <div class="col-6" style="margin-top: 5%">
+                  <small
+                    style="
+                      color: dodgerblue;
+                      font-size: small;
+                      font-weight: 400;
+                      margin-left: 52%;
+                      cursor: pointer;
+                    "
+                    (click)="knowMore(dealer.id)"
+                    >Know More</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

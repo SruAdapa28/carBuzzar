@@ -1,0 +1,77 @@
+{
+  "data": [
+    {
+      "airbags": 0,
+      "bodyType": "CUV",
+      "carBrand": {
+        "id": 0,
+        "logoUrl": "string",
+        "name": "string"
+      },
+      "carId": 0,
+      "carName": "string",
+      "exShowroomPrice": 540000,
+      "fuelType": "CNG",
+      "id": 1,
+      "imageUrlList": [
+        "swiftold1"
+      ],
+      "manufacturingYear": 0,
+      "mileage": 0,
+      "safetyRating": 0,
+      "seatCapacity": 0,
+      "transmissionType": "AUTOMATIC",
+      "variantName": "string"
+    },
+    {
+      "airbags": 0,
+      "bodyType": "CUV",
+      "carBrand": {
+        "id": 0,
+        "logoUrl": "string",
+        "name": "string"
+      },
+      "carId": 0,
+      "carName": "string",
+      "exShowroomPrice": 1000000,
+      "fuelType": "CNG",
+      "id": 2,
+      "imageUrlList": [
+        "string"
+      ],
+      "manufacturingYear": 0,
+      "mileage": 0,
+      "safetyRating": 0,
+      "seatCapacity": 0,
+      "transmissionType": "AUTOMATIC",
+      "variantName": "string"
+    },
+    {
+      "airbags": 0,
+      "bodyType": "CUV",
+      "carBrand": {
+        "id": 0,
+        "logoUrl": "string",
+        "name": "string"
+      },
+      "carId": 0,
+      "carName": "string",
+      "exShowroomPrice": 640000,
+      "fuelType": "CNG",
+      "id": 3,
+      "imageUrlList": [
+        "string"
+      ],
+      "manufacturingYear": 0,
+      "mileage": 0,
+      "safetyRating": 0,
+      "seatCapacity": 0,
+      "transmissionType": "AUTOMATIC",
+      "variantName": "string"
+    }
+  ],
+  "errorCode": "string",
+  "httpStatusCode": 0,
+  "message": "string",
+  "status": true
+}

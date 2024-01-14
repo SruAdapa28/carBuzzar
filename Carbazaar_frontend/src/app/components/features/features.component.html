@@ -1,0 +1,243 @@
+<div class="container-fluid">
+  <div class="container mt-5" style="color: #031466">
+    <h3 class="text-center" style="margin-top: 7%">How we can help you?</h3>
+    <div class="row mt-5">
+      <!-- Compare Cars -->
+      <div
+        class="col-4 card p-3 mb-5"
+        style="
+          width: 30%;
+          margin-right: 5%;
+          border-radius: 20px;
+          border: none;
+          box-shadow: 5px 5px 5px 5px gainsboro;
+          z-index: 1;
+        "
+      >
+        <h4 class="text-center mt-4 mb-1">Car comparisons</h4>
+        <div class="d-flex" style="margin-left: -25px">
+          <select
+            (change)="setBrandId($event)"
+            class="form-select mt-3 mx-4"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected><small>Brand</small></option>
+            <option
+              value="{{ brand.id }}"
+              *ngFor="let brand of brands; let i = index"
+            >
+              {{ brand.name }}
+            </option>
+          </select>
+          <select
+            (change)="setModelId($event)"
+            class="form-select mt-3 mx-3"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected>Model</option>
+            <option
+              value="{{ model.id }}"
+              *ngFor="let model of models; let i = index"
+            >
+              {{ model.name }}
+            </option>
+          </select>
+          <select
+            (change)="setVarient($event)"
+            class="form-select mt-3 mx-3"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected>Varients</option>
+            <option
+              value="{{ variant.id }}"
+              *ngFor="let variant of variants; let i = index"
+            >
+              {{ variant.variantName }}
+            </option>
+          </select>
+        </div>
+        <img
+          class="text-center"
+          src="../../../assets/images/vs1.png"
+          style="width: 10%; height: 13%; margin-left: 45%"
+        />
+
+        <!--Vs-->
+        <div class="d-flex" style="margin-left: -25px">
+          <select
+            (change)="setBrandIdVs($event)"
+            class="form-select mt-3 mx-4"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected><small>Brand</small></option>
+            <option
+              value="{{ brand.id }}"
+              *ngFor="let brand of brands; let i = index"
+            >
+              {{ brand.name }}
+            </option>
+          </select>
+          <select
+            (change)="setModelIdVs($event)"
+            class="form-select mt-3 mx-3"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected>Model</option>
+            <option
+              value="{{ model.id }}"
+              *ngFor="let model of modelsVs; let i = index"
+            >
+              {{ model.name }}
+            </option>
+          </select>
+          <select
+            (change)="setVarientVs($event)"
+            class="form-select mt-3 mx-3"
+            style="width: 100px"
+            aria-label="Default select example"
+          >
+            <option selected>Varients</option>
+            <option
+              value="{{ variant.id }}"
+              *ngFor="let variant of variantsVs; let i = index"
+            >
+              {{ variant.variantName }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          class="btn btn-primary mt-3 mb-2"
+          style="
+            width: 50%;
+            margin-left: 25%;
+            background-color: #031466;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+          "
+          (click)="onCompareCars()"
+        >
+          Compare now
+        </div>
+      </div>
+      <!-- Vs -->
+
+      <!-- Know Your Car -->
+      <div
+        class="col-4 card p-3 mb-5"
+        style="
+          width: 30%;
+          margin-right: 5%;
+          border-radius: 20px;
+          border: none;
+          box-shadow: 5px 5px 5px 5px gainsboro;
+          z-index: 1;
+        "
+      >
+        <h4 class="text-center mt-4 mb-1">Know your car</h4>
+        <select
+          (change)="setBrandId($event)"
+          class="form-select my-3"
+          style="width: 70%; margin-left: 15%"
+          aria-label="Default select example"
+        >
+          <option selected>Select Brand</option>
+
+          <option
+            value="{{ brand.id }}"
+            *ngFor="let brand of brands; let i = index"
+          >
+            {{ brand.name }}
+          </option>
+        </select>
+        <select
+          (change)="setCarId($event)"
+          class="form-select my-3"
+          style="width: 70%; margin-left: 15%"
+          aria-label="Default select example"
+        >
+          <option selected>Select Car</option>
+          <option
+            value="{{ model.id }}"
+            *ngFor="let model of models; let i = index"
+          >
+            {{ model.name }}
+          </option>
+        </select>
+        <div
+          class="btn btn-outline-primary mt-3 mb-2"
+          style="
+            width: 50%;
+            margin-left: 25%;
+            color: #ffffff;
+            background-color: #031466;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+          "
+          (click)="onSearchKnowYourCar()"
+        >
+          Search
+        </div>
+      </div>
+
+      <!-- Know Your Dealer -->
+      <div
+        class="col-4 card p-3 mb-5"
+        style="
+          width: 30%;
+          border-radius: 20px;
+          border: none;
+          box-shadow: 5px 5px 5px 5px gainsboro;
+          z-index: 1;
+        "
+      >
+        <h4 class="text-center mt-4 mb-1">Know your dealer</h4>
+        <select
+          (change)="dealerFilter($event)"
+          class="form-select my-3"
+          style="width: 70%; margin-left: 15%"
+          aria-label="Default select example"
+        >
+          <option selected>Select Brand</option>
+          <option
+            value="{{ brand.name }}"
+            *ngFor="let brand of brands; let i = index"
+          >
+            {{ brand.name }}
+          </option>
+        </select>
+        <select (change)="setDealerID($event)"
+          class="form-select my-3"
+          style="width: 70%; margin-left: 15%"
+          aria-label="Default select example"
+        >
+          <option selected>Select Dealer</option>
+          <option value ={{dealer.id}}  *ngFor= "let dealer of filteredDealers; let i = index">{{dealer.name}}</option>
+        </select>
+        <div
+          class="btn btn-outline-primary mt-3 mb-2"
+          style="
+            width: 50%;
+            margin-left: 25%;
+            background-color: #031466;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+          "
+          (click)="onSearchKnowYourDealer()"
+        >
+          Search
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

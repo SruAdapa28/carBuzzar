@@ -1,0 +1,51 @@
+<nav class="navbar" style="background-color: #edf7fa">
+  <div class="container mt-3">
+    <a
+      class="navbar-brand"
+      routerLink="/home"
+      style="
+        font-family: 'Caramel';
+        font-size: 30px;
+        font-weight: bold;
+        color: #031466;
+      "
+      ><img
+        src="../../../assets/images/car.png"
+        style="width: 40px; height: 40px; margin-right: 10px; margin-top: -10px"
+      />CarBuzzar</a
+    >
+    <div class="d-flex">
+      <a class="links" routerLink="newcars">New Cars</a>
+      <a class="links" routerLink="oldcars">Used Cars</a>
+      <a class="links" routerLink="carSuggestions">Get Suggestions</a>
+      <a class="links" routerLink="allDealers">All Dealers</a>
+      <div class="d-flex">
+        <img
+          src="../../../assets/images/placeholder.png"
+          style="
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            margin-top: 5px;
+            margin-left: 10px;
+          "
+        />
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          style="font-family: 'Roboto'; font-size: medium; width: 170px"
+          [(ngModel)]="selectedCity"
+          (ngModelChange)="cityChangeHandler()"
+        >
+          <option *ngFor="let city of cities" [ngValue]="city.name">
+            {{ city.name }}
+          </option>
+          <!-- <option value="bhubaneswar" selected>Bhubaneswar</option>
+          <option value="bangalore">Bangalore</option>
+          <option value="hyderabad">Hyderabad</option>
+          <option value="delhi">Delhi</option> -->
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>

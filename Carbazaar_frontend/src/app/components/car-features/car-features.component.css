@@ -1,0 +1,20 @@
+#basicInfo{
+  padding-right: 1%;
+  margin-left: 0%;
+  width: 80%;
+}
+
+#feature{
+  justify-items: center;
+}
+
+/* .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #e9fcffde;
+} */
+
+.table > tbody > tr > th,
+    .table > thead > tr > td,
+    .table {
+        border-bottom:0;
+        border-top: 0;
+    }

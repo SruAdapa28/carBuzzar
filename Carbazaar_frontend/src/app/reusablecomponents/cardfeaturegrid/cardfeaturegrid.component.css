@@ -1,0 +1,10 @@
+.container {
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 2%;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.appcarfeaturelist {
+  width: 100px;
+}

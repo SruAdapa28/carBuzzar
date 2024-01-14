@@ -1,0 +1,16 @@
+.b{
+  color: white;
+  background-color: #031466;
+}
+
+.filterbtn {
+  border-radius: 5px;
+  border-color: #031466;
+  color: #031466;
+  font-size: small;
+}
+
+.filterbtn:hover {
+  background: #e7f9ff;
+  color: #031466;
+}

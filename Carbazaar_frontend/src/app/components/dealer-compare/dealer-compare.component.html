@@ -1,0 +1,732 @@
+<!-- <div
+  class="container-fluid overflow-x: hidden"
+  style="background: linear-gradient(to bottom, #edf7fa 0%, #ffffff 34%)"
+> -->
+
+<!-- <div class= "container" style="display: flex;"> -->
+<!-- <div style=" flex-grow: 1;">
+  <table class="table">
+    <thead>
+      <tr>
+
+          <th
+            scope="col"
+            id="feature"
+            style="justify-items: flex-start; color: #031466"
+          >
+            {{ subHeading }}
+          </th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let char of basicInfoArray; let i = index">
+      <tr
+        *ngIf="i % 2 == 0; else elseBlock"
+        style="background-color: #edf7fa; font-weight: 200; color: #031466"
+      >
+        <th scope="row" style="font-weight: 500">{{ char }}</th>
+      </tr>
+      <ng-template #elseBlock>
+        <tr style="background-color: white; color: #031466; font-weight: 200">
+          <th scope="row" style="font-weight: 500">{{ char }}</th>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+
+</div> -->
+
+<!-- </div> -->
+
+<!-- Car comparision template -->
+<!-- <div style="display: flex;">
+  <div style="flex-grow: 1;">
+    <div class="col-4" style="width: 73%; height:45%; margin-top: 6%;">
+      <div
+        class="card p-3 mx-2"
+        style="border-radius: 20px; cursor: pointer; "
+      >
+        <img
+          class="mt-4 mb-1"
+          src="../../../assets/images/add1.png"
+          style="width: 30%; margin-left: 35%; height: 30%"
+        />
+        <p
+          class="text-center mt-2"
+          style="color: #031466; font-weight: 500"
+        >
+          Add Car
+        </p>
+        <select
+          class="form-select mb-3 mt-2"
+          style="
+            width: 70%;
+            color: #031466;
+            border: none;
+            background-color: #edf7fa;
+            font-size: medium;
+            margin-left: 15%;
+          "
+          aria-label="Default select example"
+        >
+          <option selected>Brand</option>
+          <option value="1">Tata</option>
+          <option value="2">Nissan</option>
+          <option value="3">Toyota</option>
+        </select>
+
+        <select
+          class="form-select mb-3"
+          style="
+            width: 70%;
+            color: #031466;
+            background-color: #edf7fa;
+            border: none;
+            font-size: medium;
+            margin-left: 15%;
+          "
+          aria-label="Default select example"
+        >
+          <option selected>Model</option>
+          <option value="1">Tata Tiago</option>
+          <option value="2">Nissan Micra</option>
+          <option value="3">Toyota Innova</option>
+        </select>
+
+        <button
+          class="btn btn-primary"
+          style="width: 75%; margin-left: 15%; border-radius: 5px"
+        >
+          Add To Compare
+        </button>
+      </div>
+    </div>
+    <div style="width: 100%; margin-top: 11%;">
+      <app-car-features></app-car-features>
+    </div>
+
+  </div>
+  <div class="container"  id="scroller">
+    <div class="d-flex" style="padding: 2%">
+      <div class="col-4">
+
+          <app-cardgriditem></app-cardgriditem>
+
+        <div style="margin-top: 18%; margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist></app-carfeaturelist>
+        </div>
+      </div>
+      <div class="col-4">
+          <app-cardgriditem></app-cardgriditem>
+
+
+        <div style="margin-top: 18%;margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist></app-carfeaturelist>
+        </div>
+      </div>
+      <div class="col-4">
+        <app-cardgriditem></app-cardgriditem>
+        <div style="margin-top: 18%;margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist></app-carfeaturelist>
+        </div>
+      </div>
+      <div class="col-4">
+        <app-cardgriditem></app-cardgriditem>
+        <div style="margin-top: 18%;margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist></app-carfeaturelist>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+</div> -->
+
+<!-- <div class="container" id="carDetails">
+
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="../../../assets/images/swift4.jpeg" class="d-block w-100" alt="...">
+
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="../../../assets/images/swift4.jpeg" class="d-block w-100" alt="...">
+
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/images/swift4.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div>
+
+<br>
+<div class="container">
+  <div class= "d-flex justify-content-evenly">
+    <p class="mt-4" style="color: #031466;" >Name : Maruti Suzuki</p>
+    <p class="mt-4" style="color: #031466;" >Price : 7.89 Lakhs </p>
+    <p class="mt-4" style="color: #031466;" >Engine : 1248cc</p>
+  </div>
+  <br>
+  <div class= "d-flex justify-content-evenly">
+    <p class="mt-4" style="color: #031466;" >Mileage : 24 Kmpl</p>
+    <p class="mt-4" style="color: #031466;" >Transmission : Manual</p>
+    <p class="mt-4" style="color: #031466;" >Color : Red</p>
+  </div>
+</div>
+<br>
+
+
+
+
+</div> -->
+
+<div
+  class="container-fluid mb-5"
+  style="background: linear-gradient(to bottom, #edf7fa 0%, #ffffff 14%)"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <!-- Heading Start -->
+        <div class="row">
+          <p
+            style="
+              color: #031466;
+              font-weight: bold;
+              font-size: 300%;
+              margin-top: 20%;
+            "
+          >
+            {{ variant.carBrand.name }} {{ variant.carName }}
+          </p>
+
+          <p style="font-weight: 600; font-size: 160%">
+            &#8377;{{
+              (calculateOnRoadPrice(variant.exShowroomPrice) / 100000).toFixed(
+                2
+              )
+            }}
+            Lakh
+            <small
+              style="
+                color: dodgerblue;
+                font-size: small;
+                margin-left: 1%;
+                cursor: pointer;
+              "
+              (click)="openPriceBreakup()"
+              >View Price Breakup</small
+            >
+          </p>
+
+          <p style="font-weight: 200; margin-top: -2%">
+            On-Road Price {{ variant.variantName }} , Bhubaneswar
+          </p>
+        </div>
+        <!-- Heading End -->
+
+        <!-- Specifications Start -->
+        <div class="row mt-4">
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/carengine.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-2"
+              />
+              <span style="font-size: small">Engine</span>
+              <br />
+              <span style="font-weight: 600" class="mx-4"
+                >{{ variant.engine }}cc</span
+              >
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/car-speed.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-2"
+              /><span style="font-size: small">Mileage</span>
+              <br />
+              <span style="font-weight: 600" class="mx-2"
+                >{{ variant.mileage }} kmpl</span
+              >
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/transmission.png"
+                style="width: 20%; height: 80%; margin-top: -10px"
+                class="mx-1"
+              /><span style="font-size: small">Transmission</span>
+              <br />
+              <span style="font-weight: 600; margin-left: 25%">{{
+                variant.transmissionType
+              }}</span>
+            </p>
+          </div>
+          <div class="col-3">
+            <p>
+              <img
+                src="../../../assets/images/seat.png"
+                style="width: 20%; height: 80%; margin-top: -12px"
+                class="mx-2"
+              /><span style="font-size: small">Seats</span>
+              <br />
+              <span style="font-weight: 600; margin-left: 35%">{{
+                variant.seatCapacity
+              }}</span>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <small
+            style="
+              color: dodgerblue;
+              font-size: small;
+              margin-left: 1%;
+              cursor: pointer;
+            "
+            (click)="openAllDetails()"
+            >See All Specs</small
+          >
+        </div>
+        <!-- Specifications End -->
+      </div>
+      <!-- Carousal Start -->
+      <div class="col-6">
+        <div
+          id="carouselExampleDark"
+          class="carousel carousel-dark slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div
+              class="carousel-item"
+              [ngClass]="{ active: i === 0 }"
+              *ngFor="let image of imagesList; let i = index"
+              data-bs-interval="3000"
+            >
+              <img
+                [src]="image"
+                class="mb-5"
+                alt="..."
+                style="
+                  width: 70%;
+                  height: 50%;
+                  margin-left: 15%;
+                  margin-top: 15%;
+                "
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <!-- Carousal End -->
+    </div>
+    <!-- <app-newcarbody></app-newcarbody> -->
+  </div>
+</div>
+
+<div style="display: flex; margin-left: 0%; margin-top: 4%; width: 100%">
+  <div class="container" id="dealerHeadings" style="width: 38%; margin-top: 4%">
+    <app-car-features [carType]="'Dealer'"></app-car-features>
+  </div>
+  <div class="container" id="scroller">
+    <div class="d-flex">
+      <div class="col-4" *ngFor="let dealer of dealerCompareList">
+        <div style="margin-right: -20%; margin-left: 10%">
+          <app-carfeaturelist
+            [carType]="'Dealer'"
+            [variant]="dealer"
+            [carInfo]="variant"
+          ></app-carfeaturelist>
+        </div>
+      </div>
+      <!-- <div class="col-4">
+
+        <div style="margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist ></app-carfeaturelist>
+        </div>
+      </div>
+      <div class="col-4">
+
+        <div style="margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist ></app-carfeaturelist>
+        </div>
+      </div>
+      <div class="col-4">
+        <div style="margin-right: -20%; margin-left: 10%;">
+          <app-carfeaturelist ></app-carfeaturelist>
+        </div>
+      </div> -->
+    </div>
+    <br />
+  </div>
+</div>
+
+<br />
+<!-- car details modal start -->
+<div class="modal" tabindex="-1" *ngIf="allDetails" style="display: block">
+  <div
+    class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
+    style="overflow-y: scroll"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">All Specifications</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeAllDetails()"
+        ></button>
+      </div>
+      <div class="modal-body" style="overflow-y: auto">
+        <div class="row">
+          <!-- Basic Info Start -->
+          <p>Basic Information</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Seat Capacity</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.seatCapacity }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Body Type</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.bodyType }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Variant</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.variantName }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Colors</p>
+              <p style="font-weight: 500; font-size: small; margin-left: 10%">
+                {{ variant.color }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Basic Info End -->
+          <!-- Engine & Transmission Start -->
+          <p>Engine & Transmission</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Engine (cc)</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.engine > 0 ? variant.engine : "NA" }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Max Power</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.maxPower }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Transmission Type
+              </p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.transmissionType }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Max Torque</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.maxTorque }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Engine & Transmission End -->
+          <!-- Fuel & Performance Start -->
+          <p>Fuel & Performance</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Fuel Type</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.fuelType }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Mileage</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.mileage }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Fueltank Capacity
+              </p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.fuelCapacity }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Fuel & Performance End -->
+          <!-- Dimension & Capacity Start -->
+          <p>Dimension & Capacity</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Length (mm)</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.length }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Height (mm)</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.height }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">width (mm)</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.width }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Ground Clearance (mm)
+              </p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.groundClearance }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Diemnsion & Capacity End -->
+          <!-- Safety Start -->
+          <p>Safety</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Anti-Lock Braking System
+              </p>
+              <img
+                src="../../../assets/images/{{ variant.abs }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Air Bags</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.airbags }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Cental Locking</p>
+              <img
+                src="../../../assets/images/{{ variant.centralLocking }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Break Assist</p>
+              <img
+                src="../../../assets/images/{{ variant.breakAssist }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Safety Rating (NPCI)
+              </p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.safetyRating }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Safety End -->
+          <!-- Comfort & Convenience Start -->
+          <p>Comfort & Convenience</p>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Power Steering</p>
+              <img
+                src="../../../assets/images/{{ variant.powerSteering }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Power Boot</p>
+              <img
+                src="../../../assets/images/{{ variant.powerBoot }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <div class="col-6">
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">
+                Power Door Locks
+              </p>
+              <img
+                src="../../../assets/images/{{ variant.powerDoorLocks }}.png"
+                style="width: 25px; height: 25px"
+                class="mx-2"
+              />
+            </div>
+            <hr style="margin-top: -1%" />
+            <div class="d-flex">
+              <p class="flex-grow-1" style="font-weight: 200">Power Windows</p>
+              <p style="font-weight: 500; font-size: small" class="px-3">
+                {{ variant.powerWindow !== "" ? variant.powerWindow : "NA" }}
+              </p>
+            </div>
+            <hr style="margin-top: -1%" />
+          </div>
+          <!-- Compoft & Convenience End -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- car details modal end -->
+
+<!-- Price Breakup Modal Start -->
+<div class="modal" tabindex="-1" *ngIf="priceBreakup" style="display: block">
+  <div class="modal-dialog" style="margin-right: 50%; margin-top: 22%">
+    <div class="modal-content">
+      <div class="modal-header" style="color: #031466">
+        <h5 class="modal-title" style="font-weight: bold">Price Breakup</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closePriceBreakup()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">ExShowroom Price</p>
+          <p style="font-weight: 300">{{ variant.exShowroomPrice }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">Registration Fee</p>
+          <p style="font-weight: 300">{{ getRTO(variant.exShowroomPrice) }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">FastTag Charge</p>
+          <p style="font-weight: 300">{{ fastTagCharge }}</p>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+          <p style="font-weight: 600">OnRoad Price</p>
+          <p style="font-weight: 300">
+            {{ calculateOnRoadPrice(variant.exShowroomPrice) }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Price Breakup Modal End -->

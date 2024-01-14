@@ -1,0 +1,62 @@
+{
+  "data": [
+    {
+      "buybackGurantee": true,
+      "buybackGuranteeDetails": "string",
+      "colors": [
+        "string"
+      ],
+      "dealerId": 1,
+      "dealerName": "Dealer A",
+      "discountAvailable": true,
+      "discountPercentage": 10,
+      "freeAccessories": false,
+      "freeAccessoriesDetails": "string",
+      "offer": [
+        {
+          "createdAt": "2021-10-13T07:49:03.392Z",
+          "description": "string",
+          "discount_percentage": 0,
+          "expiry_date": "2021-10-13T07:49:03.392Z",
+          "id": 0,
+          "status": true,
+          "updatedAt": "2021-10-13T07:49:03.392Z"
+        }
+      ],
+      "offerDetails": "string",
+      "offerValidUpto": "string",
+      "watingPeriod": 0
+    },
+    {
+      "buybackGurantee": true,
+      "buybackGuranteeDetails": "string",
+      "colors": [
+        "string"
+      ],
+      "dealerId": 0,
+      "dealerName": "Dealer B",
+      "discountAvailable": true,
+      "discountPercentage": 0,
+      "freeAccessories": true,
+      "freeAccessoriesDetails": "string",
+      "offer": [
+        {
+          "createdAt": "2021-10-13T07:49:03.392Z",
+          "description": "string",
+          "discount_percentage": 0,
+          "expiry_date": "2021-10-13T07:49:03.392Z",
+          "id": 0,
+          "status": true,
+          "updatedAt": "2021-10-13T07:49:03.392Z"
+        }
+      ],
+      "offerDetails": "string",
+      "offerValidUpto": "Nov 2021",
+      "watingPeriod": 0
+    }
+  ],
+  "errorCode": "string",
+  "httpStatusCode": 0,
+  "message": "string",
+  "status": true
+}

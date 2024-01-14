@@ -1,0 +1,51 @@
+<div class="container" style="flex-wrap: wrap; padding: -100%">
+  <div class="row mb-5">
+    <div class="col-3" style="width: 25%">
+      <app-car-features ></app-car-features>
+    </div>
+    <div class="col-3">
+      <app-carfeaturelist
+        [carArrayBasic]="carArray"
+        [headerRequired]="headerRequired"
+      ></app-carfeaturelist>
+    </div>
+    <div class="col-3">
+      <app-carfeaturelist
+        [carArrayBasic]="carArray"
+        [headerRequired]="headerRequired"
+      ></app-carfeaturelist>
+    </div>
+    <!-- <div class="col-3">
+      <app-carfeaturelist
+        [carArrayBasic]="carArray"
+        [headerRequired]="headerRequired"
+      ></app-carfeaturelist>
+    </div> -->
+
+    <!-- <div class="d-flex">
+      <div style="width: 100%">
+        <app-car-features [serialNo]="serialNo"></app-car-features>
+      </div>
+
+      <div class="col-9">
+        <div class="d-flex">
+          <div class="col-5">
+            <app-carfeaturelist
+              [carArrayBasic]="carArray"
+              [headerRequired]="headerRequired"
+            ></app-carfeaturelist>
+          </div>
+          <div class="col-4">
+            <app-carfeaturelist
+              [carArrayBasic]="carArray"
+              [headerRequired]="headerRequired"
+            ></app-carfeaturelist>
+          </div>
+          <div class="col-4">
+            <app-carfeaturelist [carArrayBasic] ="carArray" [headerRequired] ="headerRequired"></app-carfeaturelist>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
